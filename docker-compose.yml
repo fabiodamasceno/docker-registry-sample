@@ -1,0 +1,15 @@
+version: '3.7'
+services:
+  dockerregistry:
+    container_name: docker-registry
+    image: registry:2
+    restart: always
+    ports:
+      - 5000:5000
+    environment:
+      - REGISTRY_HTTP_ADDR=0.0.0.0:5000
+      - REGISTRY_STORAGE_DELETE_ENABLED=true
+    volumes:
+      - /volumes/docker-registry/data:/var/lib/registry
+      - /volumes/docker-registry/certs:/certs
+      - /volumes/docker-registry/auth:/auth
